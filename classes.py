@@ -25,7 +25,7 @@ class Deck:
     def shuffle():
         #randomize cards in deck
         self.order = random.shuffle(self.order)
-    def deal():
+    def deal(receiver):
         #take top card off deck
         
 
@@ -39,7 +39,7 @@ class Hand:
     def show_hand():
         
 class Player:
-    def __init__(self, stack):
+    def __init__(self, stack, hand):
         self.stack = stack
         
     def hit():
@@ -54,5 +54,10 @@ class Game:
         
     def start_game():
         deck.shuffle()
-        deck.deal()
+        deck.deal(player)
+        deck.deal(dealer)
+        deck.deal(player)
+        
+        
+
         
