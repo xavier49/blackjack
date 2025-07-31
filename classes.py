@@ -52,14 +52,17 @@ class Player:
         pass
     
 class Game:
-    def __init__(self, bet):
+    def __init__(self, bet, deck, player, dealer):
         self.bet = bet
+        self.deck = deck
+        self.player = player 
+        self.dealer = dealer
         
-    def start_game(self, receiver):
+    def start_game(self, player, dealer):
         self.deck.shuffle()
-        self.deck.deal(receiver)
-        self.deck.deal(receiver)
-        self.deck.deal(receiver)
+        self.deck.deal(player)
+        self.deck.deal(dealer)
+        self.deck.deal(player)
         
 class Dealer:
     def __init__(self, hand):
