@@ -19,7 +19,7 @@ class Deck:
         ranks = ['2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K', 'A']
         values = {'2':2, '3':3, '4':4, '5':5, '6':6, '7':7, '8':8, '9':9, 'T':10, 'J':10, 'Q':10, 'K':10, 'A':11}
     
-        self.order = [Card(suit, rank, value[rank]) for suit in suits for rank in ranks]
+        self.order = [Card(suit, rank, values[rank]) for suit in suits for rank in ranks]
     
     def shuffle(self):
         #randomize cards in deck
@@ -34,32 +34,32 @@ class Hand:
         self.cards = cards
     def add_card(self, card):
         self.cards.append(card)
-    def calculate_value(hole_cards):
+    def calculate_value(self):
         value = 0
-        for card in cards:
+        for card in self.cards:
             value = value + card.value
         print(f"Your hand has value {value}")
     def show_hand():
-        
+        pass
 class Player:
     def __init__(self, stack, hand):
         self.stack = stack
         self.hand = hand
-    def hit():
-        hand.add_card()
-        hand.calculate_value()
+    def hit(self):
+        self.hand.add_card()
+        self.hand.calculate_value()
     def stand():
-        
+        pass
     
 class Game:
     def __init__(self, bet):
         self.bet = bet
         
-    def start_game():
-        deck.shuffle()
-        deck.deal(player)
-        deck.deal(dealer)
-        deck.deal(player)
+    def start_game(self, receiver):
+        self.deck.shuffle()
+        self.deck.deal(receiver)
+        self.deck.deal(receiver)
+        self.deck.deal(receiver)
         
 class Dealer:
     def __init__(self, hand):
