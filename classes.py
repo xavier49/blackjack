@@ -5,7 +5,7 @@ Created on Tue Jul 29 20:20:36 2025
 
 @author: xavierlee
 """
-
+import random
 class Card:
     def __init__(self, suit, rank, value):
         self.suit = suit
@@ -13,7 +13,6 @@ class Card:
         self.value= value
         
 class Deck:
-    import random
     
     def __init__(self):
         suits = ['h', 's', 'c', 'd']
@@ -22,26 +21,30 @@ class Deck:
     
         self.order = [Card(suit, rank, value[rank]) for suit in suits for rank in ranks]
     
-    def shuffle():
+    def shuffle(self):
         #randomize cards in deck
-        self.order = random.shuffle(self.order)
-    def deal(receiver):
+        random.shuffle(self.order)
+    def deal(self, receiver):
         #take top card off deck
-        
+        card = self.order.pop()
+        receiver.hand.add_card(card)
 
 class Hand:
-    def __init__(self):
-        
-    def add_card():
-        
+    def __init__(self, cards):
+        self.cards = cards
+    def add_card(self, card):
+        self.cards.append(card)
     def calculate_value(hole_cards):
-    
+        value = 0
+        for card in cards:
+            value = value + card.value
+        print(f"Your hand has value {value}")
     def show_hand():
         
 class Player:
     def __init__(self, stack, hand):
         self.stack = stack
-        
+        self.hand = hand
     def hit():
         hand.add_card()
         hand.calculate_value()
@@ -58,6 +61,8 @@ class Game:
         deck.deal(dealer)
         deck.deal(player)
         
-        
+class Dealer:
+    def __init__(self, hand):
+        self.hand = hand
 
         

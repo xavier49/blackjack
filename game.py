@@ -25,5 +25,7 @@ Created on Tue Jul 29 20:44:58 2025
 
 print("Welcome to my blackjack game \n How much would you like to buy in for?")
 stack = int(input())
+player = Player(stack, hand = [])
+dealer = Dealer(hand = [])
 initial()
 current.start_game()
