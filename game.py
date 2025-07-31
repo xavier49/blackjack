@@ -16,9 +16,10 @@ Created on Tue Jul 29 20:44:58 2025
 #show cards and calculate winner
 #calculate payout and update chip count
 #ask to play again and how much to bet 
+from classes import Card, Deck, Player, Dealer, Game, Hand
+import random
 
-
- def initial():
+def initial():
         print("How much would you like to wager?")
         bet = int(input())
         current = Game(bet)
