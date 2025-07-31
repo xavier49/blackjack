@@ -26,7 +26,7 @@ def initial():
 
 print("Welcome to my blackjack game \n How much would you like to buy in for?")
 stack = int(input())
-player = Player(stack, hand = [])
-dealer = Dealer(hand = [])
+player = Player(stack)
+dealer = Dealer()
 current = initial()
 current.start_game(player, dealer)
