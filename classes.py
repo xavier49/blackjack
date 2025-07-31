@@ -34,11 +34,11 @@ class Hand:
         self.cards = cards
     def add_card(self, card):
         self.cards.append(card)
-    def calculate_value(self):
+    def calculate_value(self, receiver):
         value = 0
         for card in self.cards:
             value = value + card.value
-        print(f"Your hand has value {value}")
+        print(f"{receiver}'s hand has value {value}")
     def show_hand():
         pass
 class Player:
@@ -63,7 +63,11 @@ class Game:
         self.deck.deal(player)
         self.deck.deal(dealer)
         self.deck.deal(player)
-        
+        self.player.hand.calculate_value(player)
+        self.dealer.hand.calculate_value(dealer)
+        print("Would you like to hit or stand?")
+        action = input()
+        print(f"Player would like to {action}")
 class Dealer:
     def __init__(self):
         self.hand = Hand(cards = [])
