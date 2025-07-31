@@ -34,6 +34,7 @@ class Hand:
         self.cards = cards
     def add_card(self, card):
         self.cards.append(card)
+        print(self.cards)
     def calculate_value(self, receiver):
         value = 0
         for card in self.cards:
