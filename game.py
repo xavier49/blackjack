@@ -22,7 +22,7 @@ import random
 def initial():
         print("How much would you like to wager?")
         bet = int(input())
-        return Game(bet, deck = Deck(), player = Player(stack, hand = []), dealer = Dealer())
+        return Game(bet, deck = Deck(), player = Player(stack, hand = []), dealer = Dealer(hand = []))
 
 print("Welcome to my blackjack game \n How much would you like to buy in for?")
 stack = int(input())
