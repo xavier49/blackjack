@@ -22,37 +22,47 @@ class Deck:
         self.order = [Card(suit, rank, values[rank]) for suit in suits for rank in ranks]
     
     def shuffle(self):
-        #randomize cards in deck
         random.shuffle(self.order)
+        
     def deal(self, receiver):
-        #take top card off deck
         card = self.order.pop()
         receiver.hand.add_card(card)
 
 class Hand:
-    def __init__(self, cards):
+    
+    def __init__(self, cards: list):
         self.cards = cards
+        self.value = 0
+        
     def add_card(self, card):
         self.cards.append(card)
-        print(self.cards)
+        
     def calculate_value(self, receiver):
-        value = 0
-        for card in self.cards:
-            value = value + card.value
-        print(f"{receiver}'s hand has value {value}")
+        for card in receiver.hand.cards:
+            self.value = self.value + card.value
+        print(f"{receiver}'s hand has value {self.value}")
+            
     def show_hand():
         pass
+    
 class Player:
+    
     def __init__(self, stack):
         self.stack = stack
         self.hand = Hand(cards = [])
+        
+    def __str__(self):
+        return("Player")
+        
     def hit(self):
         self.hand.add_card()
         self.hand.calculate_value()
-    def stand():
+        
+    def stand(self):
         pass
     
 class Game:
+    
     def __init__(self, bet, deck, player, dealer):
         self.bet = bet
         self.deck = deck
@@ -69,8 +79,13 @@ class Game:
         print("Would you like to hit or stand?")
         action = input()
         print(f"Player would like to {action}")
+        
 class Dealer:
+    
     def __init__(self):
         self.hand = Hand(cards = [])
+        
+    def __str__(self):
+        return("Dealer")
 
         
