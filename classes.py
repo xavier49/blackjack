@@ -42,9 +42,9 @@ class Hand:
     def show_hand():
         pass
 class Player:
-    def __init__(self, stack, hand):
+    def __init__(self, stack):
         self.stack = stack
-        self.hand = hand
+        self.hand = Hand()
     def hit(self):
         self.hand.add_card()
         self.hand.calculate_value()
@@ -65,7 +65,7 @@ class Game:
         self.deck.deal(player)
         
 class Dealer:
-    def __init__(self, hand):
-        self.hand = hand
+    def __init__(self):
+        self.hand = Hand()
 
         
