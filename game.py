@@ -24,9 +24,14 @@ def initial():
         bet = int(input())
         return Game(bet, deck = Deck(), player = Player(stack), dealer = Dealer())
 
+
 print("Welcome to my blackjack game \n How much would you like to buy in for?")
 stack = int(input())
 player = Player(stack)
 dealer = Dealer()
 current = initial()
 current.start_game(player, dealer)
+current.playable(player, dealer)
+want2play = True 
+while want2play:
+    current.endgame(player, dealer)

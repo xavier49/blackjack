@@ -27,6 +27,8 @@ class Deck:
     def deal(self, receiver):
         card = self.order.pop()
         receiver.hand.add_card(card)
+        
+        
 
 class Hand:
     
@@ -34,13 +36,18 @@ class Hand:
         self.cards = cards
         self.value = 0
         
+        
+        
     def add_card(self, card):
         self.cards.append(card)
         
-    def calculate_value(self, receiver):
+    def calculate_value(self, receiver, verbose = True):
+        self.value = 0
         for card in receiver.hand.cards:
             self.value = self.value + card.value
-        print(f"{receiver}'s hand has value {self.value}")
+        if verbose:
+            print(f"{receiver}'s hand has value {self.value}")
+        return self.value
             
     def show_hand():
         pass
@@ -58,8 +65,6 @@ class Player:
         self.hand.add_card()
         self.hand.calculate_value()
         
-    def stand(self):
-        pass
     
 class Game:
     
@@ -68,6 +73,7 @@ class Game:
         self.deck = deck
         self.player = player 
         self.dealer = dealer
+        self.result = ""
         
     def start_game(self, player, dealer):
         self.deck.shuffle()
@@ -76,9 +82,53 @@ class Game:
         self.deck.deal(player)
         self.player.hand.calculate_value(player)
         self.dealer.hand.calculate_value(dealer)
-        print("Would you like to hit or stand?")
-        action = input()
-        print(f"Player would like to {action}")
+        
+    def playable(self, player, dealer):
+        playable = True
+        while playable:
+            print("Would you like to hit or stand?")
+            action = input()
+            print(f"Player would like to {action}")
+            
+            if action.lower() in ("hit", "h"):
+                self.deck.deal(player)
+                
+                if player.hand.calculate_value(player) > 21:
+                    print("womp womp you lose give me your money")
+                    self.result = "Loss"
+                    playable = False
+                    
+            elif action.lower() in ("stand", "s"):
+                playable = False
+                
+                while dealer.hand.calculate_value(dealer) < 17:
+                    self.deck.deal(dealer)
+                    
+                    if dealer.hand.calculate_value(dealer, verbose = False) > 21:
+                        print(f"congrats you just won {self.bet} shmecks")
+                        self.result = "Win"
+                
+                player_value = player.hand.calculate_value(player, verbose = False)
+                dealer_value = dealer.hand.calculate_value(dealer, verbose = False)
+                
+                if player_value > dealer_value:
+                    print(f"congrats you just won {self.bet} shmecks")
+                    self.result = "Win"
+                    
+                elif player_value < dealer_value and dealer_value < 21:
+                    print("womp womp you lose give me your money")
+                    self.result = "Loss"
+                    
+                else:
+                    print("I think this is a push? \n Take your chips back")
+                    self.result = "Push"
+                    
+            else: 
+                print("Answer the question")
+                
+    def endgame(self, bet, player):
+        pass
+        
         
 class Dealer:
     
